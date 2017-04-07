@@ -1,14 +1,25 @@
 // owner: chuangyu
 
-const Calculate = (url) => {
-  return new Promise((resolve, reject) => {
-    Promise.all([
-      _checkTitle(url),
-      _check
-    ]).then(res => {
+const checkTitle = title => title ? 0 : 10
 
-    }, err => {
+const checkKeywords = keywords => {
+  if (!keywords) {
+    return 20
+  } else if (keywords.indexOf('，') > -1) {
+    return 10
+  }
 
-    })
-  })
+  return 0
+}
+
+
+const checkDescription = description => description ? 0 : 10
+
+const checkFavicon = icon => icon ? 0 : 10
+
+module.exports = {
+  checkTitle,
+  checkKeywords,
+  checkDescription,
+  checkFavicon,
 }

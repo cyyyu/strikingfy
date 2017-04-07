@@ -1,25 +1,24 @@
 // owner: chengxuan
 
-var inputURL = 'http://libo.sxl.cn/';
-var request = require('request')
-var cheerio = require('cheerio')
-var calculator = require('./score-calculation.js')
-var htmlBody;
+const inputURL = 'http://libo.sxl.cn/'
+const request = require('request')
+const cheerio = require('cheerio')
+const calculator = require('./score-calculation.js')
 
-request(inputURL, function (error, response, body) {
-  	parseHTML(body);
-});
+request(inputURL, function(error, response, body) {
+  parseHTML(body)
+})
 
-function parseHTML(html){
+function parseHTML(html) {
 
-	const $ = cheerio.load(html);
-	var title = $('title').text();
-	var keywords = $('meta[name="keywords"]').attr('content');
-	var description = $('meta[name="description"]').attr('content');
-	console.log(title)
-	console.log(keywords)
-	console.log(description)
+  const $ = cheerio.load(html)
+  const title = $('title').text()
+  const keywords = $('meta[name="keywords"]').attr('content')
+  const description = $('meta[name="description"]').attr('content')
 
-	// let score1 = calculator.checkTitle(title)
-	// let score2 = calculator.checkKeyWord(keywords)
+  let score1 = calculator.checkTitle(title)
+  let score2 = calculator.checkKeywords(keywords)
+  let score3 = calculator.checkDescription(description)
+
+  console.log('score:', 100 - (score1 + score1))
 }
