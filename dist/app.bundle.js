@@ -73,7 +73,7 @@
 "use strict";
 
 
-var a = 'hello';
+var a = 'helldfdfdfo';
 console.log(a);
 
 /***/ })
