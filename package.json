@@ -4,8 +4,7 @@
   "description": "Strikingly Hackathon 2017.",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --progress",
-    "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors"
+    "yc": "webpack -w && lessc styles.less styles.css"
   },
   "repository": {
     "type": "git",
@@ -21,8 +20,8 @@
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
-    "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "less": "^2.7.2",
+    "webpack": "^2.3.3"
   },
   "dependencies": {
     "jquery": "^3.2.1"
