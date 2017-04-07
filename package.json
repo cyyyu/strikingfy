@@ -4,7 +4,7 @@
   "description": "Strikingly Hackathon 2017.",
   "main": "app.js",
   "scripts": {
-    "yc": "webpack -w && lessc styles.less styles.css"
+    "style": "lessc styles.less styles.css"
   },
   "repository": {
     "type": "git",

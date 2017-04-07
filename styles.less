@@ -1,3 +1,45 @@
-h1 {
-  color: red;
+@import url('https://fonts.googleapis.com/css?family=Muli|Lobster');
+@container-width: 50%;
+
+.container {
+  position: relative;
+  top: 100px;
+  width: @container-width;
+  margin: 0 auto;
+
+  .logo {
+    font-size: 7em;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    color: #800080;
+  }
+
+  .form-inline {
+    .form-group {
+      width: 100%;
+      input.input-url {
+        width: 100% !important;
+        font-family: sans-serif;
+      
+        &::placeholder {
+          color: #d4d8dd;
+        }
+      }
+    }
+    button.btn.submit {
+      margin: 0 auto;
+      margin-top: 30px;
+      cursor: pointer;
+      font-family: 'Muli';
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background-color: linear-gradient()
+    }
+
+    .btn:focus, .btn:active {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+  
 }
