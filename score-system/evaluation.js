@@ -11,11 +11,11 @@ function caclculate(url) {
     var beforeLoad = new Date()
     request(inputURL, function(error, response, body) {
       try {
-        let total = parseHTML(body)
+        let results = parseHTML(body)
         var afterLoad = new Date()
         var calculatedTime = afterLoad - beforeLoad
         console.log(calculatedTime/1000)
-        resolve(total)
+        resolve(results)
       } catch (err) {
         reject(err)
       }
@@ -35,18 +35,9 @@ function caclculate(url) {
       const baiduVerification = html.indexOf("<meta name=\"baidu-site-verification") > -1
       const googleVerfication = html.indexOf("analytics_tracker") > -1
 
-      let score1 = calculator.checkTitle(title)
-      let score2 = calculator.checkKeywords(keywords)
-      let score3 = calculator.checkDescription(description)
-      let score4 = calculator.checkFavicon(favicon)
+      let result = calculator(title, keywords, description, favicon, shareIcon, baiduVerification, googleVerfication)
 
-      let total = 100 - (score1 + score1 + score3 + score4)
-
-
-
-      Bitmap bmp = new Bitmap("winter.jpg");
-
-      return total
+      return result
     }
   })
 }
