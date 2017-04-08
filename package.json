@@ -4,7 +4,7 @@
   "description": "Strikingly Hackathon 2017.",
   "main": "app.js",
   "scripts": {
-    "style": "lessc styles.less styles.css"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -20,10 +20,19 @@
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
+    "css-loader": "^0.28.0",
     "less": "^2.7.2",
+    "less-loader": "^4.0.3",
+    "style-loader": "^0.16.1",
     "webpack": "^2.3.3"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
+    "bootstrap": "^4.0.0-alpha.6",
+    "cheerio": "^0.22.0",
+    "echarts": "^3.5.2",
+    "echarts-liquidfill": "^1.0.4",
+    "express": "^4.15.2",
     "jquery": "^3.2.1"
   }
 }
