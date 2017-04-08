@@ -35,12 +35,11 @@ function caclculate(url) {
       const baiduVerification = html.indexOf("<meta name=\"baidu-site-verification") > -1
       const googleVerfication = html.indexOf("analytics_tracker") > -1
 
-      const images = $('img').attr('src')
-      console.log(images.length);
+      let imgList = []
+      $('img').each(function(){
+        imgList.push(($(this).attr('src')))
+      });
 
-      for (i=0;i<images.length;i++){
-        console.log(images[i].getText())
-      }
       
       let result = calculator.calculate(title, keywords, description, favicon, shareIcon, baiduVerification, googleVerfication)
 
