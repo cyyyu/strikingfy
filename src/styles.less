@@ -10,7 +10,7 @@
     font-size: 7em;
     font-family: 'Lobster', cursive;
     text-align: center;
-    color: #800080;
+    color: #6b4e95;
   }
 
   .form-inline {
@@ -51,7 +51,48 @@
 
 .progress-section {
   display: none;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
+  .loading-instruction {
+    color: #696969;
+  }
+}
+
+.result-upper-section {
+  width: 83%;
+  margin: 0 auto;
+}
+
+.container-detail {
+  display: none;
+  h1 {
+    text-align: center;
+  }
+  .overall-result {
+    position: relative;
+    width: 70%;
+    top: 100px;
+    left: 300px;
+  }
+  .bar-diagram {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    top: -100px;
+    left: 70px;
+  }
+  .detail-list {
+    width: 70%;
+    margin: 0 auto;
+    .detail-item-name i{
+      position: absolute;
+      right: 60px;
+      transform: scale(1.5);
+    }
+  }
 }
 
 
