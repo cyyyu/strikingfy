@@ -9,7 +9,7 @@ const calculator = require('./score-calculation.js')
 module.exports = function caclculate(url) {
   return new Promise((resolve, reject) => {
     var beforeLoad = new Date()
-    request(inputURL, function(error, response, body) {
+    request(url, function(error, response, body) {
       try {
 
         var afterLoad = new Date()

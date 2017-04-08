@@ -27,3 +27,7 @@ app.get('/score', function(req, res) {
 app.listen(6789, function() {
   console.log('server start')
 })
+
+process.on('uncaughtException', function(err) {
+  console.log('err', err)
+})

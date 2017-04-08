@@ -179,8 +179,11 @@ function checkImages(imgUrls) {
       url = 'http:' + url
     }
     url = url.replace(/https/gi, 'http')
+    console.log(url)
     tmp.push(imageChecker(url))
   })
+
+  tmp = tmp.slice(0, 5)
 
   return Promise.all(tmp)
 }
