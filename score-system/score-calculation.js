@@ -1,6 +1,7 @@
 // owner: chuangyu
 
 const _ = require('lodash')
+const imageChecker = require('./inspector-bokeh/measure_blur_node')
 
 const checkTitle = title => {
   if (!title) {
@@ -136,7 +137,7 @@ const checkGoogle = (google) => {
   }
 }
 
-module.exports = function calculate(title, keywords, description, favicon, shareicon, baidu, google) {
+function calculate(title, keywords, description, favicon, shareicon, baidu, google) {
   let score = 100,
     passed = 0,
     failed = 0
@@ -168,4 +169,19 @@ module.exports = function calculate(title, keywords, description, favicon, share
     },
     aspects: results
   }
+}
+
+function checkImages(imgUrls) {
+  let tmp = []
+
+  imgUrls.map((url) => {
+    tmp.push(imageChecker(url))
+  })
+
+  return Promise.all(tmp)
+}
+
+module.exports = {
+  calculate,
+  checkImages
 }
