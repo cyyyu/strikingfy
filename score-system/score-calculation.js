@@ -167,7 +167,7 @@ function calculate(title, keywords, description, favicon, shareicon, baidu, goog
       passed: passed,
       failed: failed
     },
-    aspects: results
+    aspects: results,
   }
 }
 
@@ -175,6 +175,10 @@ function checkImages(imgUrls) {
   let tmp = []
 
   imgUrls.map((url) => {
+    if (url.indexOf('http') === -1) {
+      url = 'http:' + url
+    }
+    url = url.replace(/https/gi, 'http')
     tmp.push(imageChecker(url))
   })
 

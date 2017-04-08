@@ -22,7 +22,10 @@ module.exports = function(imageUrl) {
           context = canvas.getContext('2d')
           context.drawImage(image, 0, 0)
           var stats = measureBlur(context.getImageData(0, 0, canvas.width, canvas.height))
-          resolve(Number((stats.avg_edge_width_perc).toFixed(2)))
+          resolve({
+            score: Number((stats.avg_edge_width_perc).toFixed(2)),
+            url: imageUrl
+          })
         }
         image.src = buffer
       })

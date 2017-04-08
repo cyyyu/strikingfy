@@ -10,8 +10,8 @@ app.get('/dist/:file', function(req, res) {
   res.sendFile(path.resolve(__dirname, `./dist/${req.params.file}`))
 })
 
-app.get('/score/:url', function(req, res) {
-  let url = req.params.url
+app.get('/score', function(req, res) {
+  let url = req.query.url
   calculate(url).then((re) => {
     res.send(Object.assign({
       status: 200
