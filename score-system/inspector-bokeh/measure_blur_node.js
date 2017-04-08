@@ -36,7 +36,7 @@ function showBlurScore(imageData) {
 module.exports = function(imageUrl) {
   return new Promise((resolve, reject) => {
     let rawData = [];
-    http.get(process.argv[2], (res) => {
+    http.get(imageUrl, (res) => {
       res.on('data', (chunk) => {
         rawData.push(chunk)
       })
