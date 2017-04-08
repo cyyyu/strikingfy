@@ -167,7 +167,7 @@ function calculate(title, keywords, description, favicon, shareicon, baidu, goog
       passed: passed,
       failed: failed
     },
-    aspects: results
+    aspects: results,
   }
 }
 

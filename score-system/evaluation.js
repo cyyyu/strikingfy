@@ -11,39 +11,49 @@ function caclculate(url) {
     var beforeLoad = new Date()
     request(inputURL, function(error, response, body) {
       try {
-        let results = parseHTML(body)
+
         var afterLoad = new Date()
         var calculatedTime = afterLoad - beforeLoad
         console.log(calculatedTime / 1000)
-        resolve(results)
+        parseHTML(body).then((results) => {
+          resolve(results)
+        })
+
       } catch (err) {
         reject(err)
       }
     })
 
     function parseHTML(html) {
+      return new Promise((resolve, reject) => {
+        const $ = cheerio.load(html)
+        const title = $('title').text()
+        const keywords = $('meta[name="keywords"]').attr('content')
+        const description = $('meta[name="description"]').attr('content')
 
-      const $ = cheerio.load(html)
-      const title = $('title').text()
-      const keywords = $('meta[name="keywords"]').attr('content')
-      const description = $('meta[name="description"]').attr('content')
 
+        const favicon = $('link[rel="shortcut icon"]').attr('href')
+        const shareIcon = $('link[rel="apple-touch-icon"][sizes="76x76"]').attr('href')
 
-      const favicon = $('link[rel="shortcut icon"]').attr('href')
-      const shareIcon = $('link[rel="apple-touch-icon"][sizes="76x76"]').attr('href')
+        const baiduVerification = html.indexOf("<meta name=\"baidu-site-verification") > -1
+        const googleVerfication = html.indexOf("analytics_tracker") > -1
 
-      const baiduVerification = html.indexOf("<meta name=\"baidu-site-verification") > -1
-      const googleVerfication = html.indexOf("analytics_tracker") > -1
+        let result = calculator.calculate(title, keywords, description, favicon, shareIcon, baiduVerification, googleVerfication)
 
-      let imgList = []
-      $('img').each(function(){
-        imgList.push(($(this).attr('src')))
-      });
+        // return result
+        let imgList = []
+        $('img').each(function() {
+          imgList.push(($(this).attr('src')))
+        });
 
-      
-      let result = calculator.calculate(title, keywords, description, favicon, shareIcon, baiduVerification, googleVerfication)
+        calculator.checkImages(imgList).then((scores) => {
+          resolve({
+            imageScores: scores,
+            result: result
+          })
+        })
+      })
 
-      return result
     }
   })
 }
