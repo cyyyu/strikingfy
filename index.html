@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>S-Evaluator</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.5.2/echarts.min.js"></script>
-  <script src></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
   <div class="container-index animated fadeInDown">
@@ -20,12 +19,28 @@
       <button type="submit" class="btn btn-lg btn-primary submit">Start</button>
     </form>
   </div>
-  <div class="progress-section">
+  <div class="progress-section animated fadeInDown">
     <div class="progress-radial progress-0"><b></b></div>
     <div class="loading-instruction">Loading...This might take a few seconds...</div>
   </div>
   <div class="container-detail">
-    <div class="bar-diagram"></div>
+    <h1>Evaluation Result is showed below:</h1>
+    <div class="result-upper-section">
+      <div class="overall-result">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </div>
+      <div class="bar-diagram"></div>
+    </div>
+    <div class="detail-list col-md-11">
+      <table class="detail-list-ul table" id="tips">
+        <tr colspan="2" class="row">
+          <td class="detail-item-name col-md-3"><b>Aspect Name</b></td>
+          <td class="detail-item-detail col-md-8">
+            <b>Score * Tips</b>
+          </td>
+        </tr>
+      </table>  
+    </div>
   </div>
   <script src="dist/app.bundle.js"></script>
 </body>

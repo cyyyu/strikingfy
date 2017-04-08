@@ -5,21 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 import './styles.less'
 
-
-const response = {
-  "status":200,
-  "totalScore":100,
-  "count": {
-    "passed": 3,
-    "failed": 4
-  },
-  "aspects":[
-  ]
-}
-
 class Evaluation {
   constructor() {
-    this.PARSE_URL = ''
   }
 
   urlValidator(url) {
@@ -29,8 +16,14 @@ class Evaluation {
     return !!url.match(regex)
   }
 
+  getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
   progressLoading(url) {
     let loadBar = $('.progress-radial').last()
+
+    const randomInterval = [10, 30, 50, 60, 100]
 
     let timer = setInterval(() => {
       let currentClass = loadBar.attr('class').split(' ')[1]
@@ -41,15 +34,44 @@ class Evaluation {
       if (newPercentage >= 100) {
         clearInterval(timer)
         this.redirectToResult(url)
-        $('.progress-section').toggle()
+        $('.progress-section').hide()
+        $('.container-detail').show()
       }
-    }, 20)
+    }, randomInterval[this.getRandomArbitrary(0, 4)])
+  }
+
+  renderDetailTable(json) {
+    let listDom = $('#tips')
+
+    const greenIcon = `<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>`
+    const redIcon = `<i class="fa fa-times" aria-hidden="true" style="color:red;"></i>`
+
+    json.aspects.map(item => {
+      listDom.append($(`
+        <tr colspan="2" class="row">
+          <td class="detail-item-name col-md-3">
+            ${item.name}
+            ${item.pass===200 ? greenIcon : redIcon}
+          </td>
+          <td class="detail-item-detail col-md-8">
+            <div class="detail-item-score">Score: -${item.score}</div>
+            <div class="detail-item-tips">Tips: ${item.tip}</div>
+          </td>
+        </tr>`))
+    })
+
+    this.renderImageDetail()
+  }
+
+  renderImageDetail(imgArr) {
+    
   }
 
   redirectToResult(url) {
     $.get(`/score?url=${url}`, (json) => {
-      console.log('url', url)
+      console.log('')
       this.renderCountDiagram(json.count)
+      this.renderDetailTable(json)
     })
   }
 
@@ -104,8 +126,8 @@ class Evaluation {
       return
     }
 
-    $('.container-index').toggle()
-    $('.progress-section').toggle()
+    $('.container-index').hide()
+    $('.progress-section').show()
 
     this.progressLoading(url)
   }
@@ -122,5 +144,6 @@ class Evaluation {
 
 $(document).ready(() => {
   const evalInstance = new Evaluation()
+  $('.input-url').focus()
   evalInstance.submitHandler()
 })
