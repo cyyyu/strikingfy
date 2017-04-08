@@ -23,26 +23,30 @@ function drawImageOnCanvas() {
   context = canvas.getContext('2d');
   context.drawImage(image, 0, 0);
 
-  showBlurScore(context.getImageData(0, 0, canvas.width, canvas.height))
+  return showBlurScore(context.getImageData(0, 0, canvas.width, canvas.height))
 }
 
 function showBlurScore(imageData) {
   var stats = measureBlur(imageData);
-  console.log('Blur score:', Number((stats.avg_edge_width_perc).toFixed(2)));
-  console.log(stats);
+  return Number((stats.avg_edge_width_perc).toFixed(2))
+    //   console.log('Blur score:', Number((stats.avg_edge_width_perc).toFixed(2)));
+    //   console.log(stats);
 }
-if (process.argv.length >= 3) {
-  let rawData = [];
-  http.get(process.argv[2], (res) => {
+
+module.exports = function(imageUrl) {
+  return new Promise((resolve, reject) => {
+    let rawData = [];
+    http.get(process.argv[2], (res) => {
       res.on('data', (chunk) => {
         rawData.push(chunk)
       })
       res.on('end', () => {
         let buffer = Buffer.concat(rawData)
-        createImage(null, buffer)
+        resolve(createImage(null, buffer))
+      })
+      res.on('error', (err) => {
+        reject(err)
       })
     })
-    //   fs.readFile(process.argv[2], createImage);
-} else {
-  console.info('Usage: node measure_blur.js path/to/image/file.jpg');
+  })
 }
