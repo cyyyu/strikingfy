@@ -5,8 +5,8 @@ const inputURL = 'http://libo.sxl.cn/'
 const request = require('request')
 const cheerio = require('cheerio')
 const calculator = require('./score-calculation.js')
-  // module.exports = 
-function caclculate(url) {
+
+module.exports = function caclculate(url) {
   return new Promise((resolve, reject) => {
     var beforeLoad = new Date()
     request(inputURL, function(error, response, body) {
@@ -43,7 +43,10 @@ function caclculate(url) {
         // return result
         let imgList = []
         $('img').each(function() {
-          imgList.push(($(this).attr('src')))
+          let url = $(this).attr('src')
+          if (url.indexOf('qnssl') > -1) {
+            imgList.push(url)
+          }
         });
 
         calculator.checkImages(imgList).then((scores) => {
@@ -58,4 +61,4 @@ function caclculate(url) {
   })
 }
 
-caclculate(inputURL)
+// caclculate(inputURL)
