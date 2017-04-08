@@ -5,12 +5,16 @@ const inputURL = 'http://libo.sxl.cn/'
 const request = require('request')
 const cheerio = require('cheerio')
 const calculator = require('./score-calculation.js')
-
-module.exports = function caclculate(url) {
+// module.exports = 
+function caclculate(url) {
   return new Promise((resolve, reject) => {
+    var beforeLoad = new Date()
     request(inputURL, function(error, response, body) {
       try {
         let total = parseHTML(body)
+        var afterLoad = new Date()
+        var calculatedTime = afterLoad - beforeLoad
+        console.log(calculatedTime/1000)
         resolve(total)
       } catch (err) {
         reject(err)
@@ -37,7 +41,14 @@ module.exports = function caclculate(url) {
       let score4 = calculator.checkFavicon(favicon)
 
       let total = 100 - (score1 + score1 + score3 + score4)
+
+
+
+      Bitmap bmp = new Bitmap("winter.jpg");
+
       return total
     }
   })
 }
+
+caclculate(inputURL)
