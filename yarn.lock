@@ -745,6 +745,16 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   version "1.0.30000649"
   resolved "http://registry.npm.taobao.org/caniuse-db/download/caniuse-db-1.0.30000649.tgz#1ee1754a6df235450c8b7cd15e0ebf507221a86a"
 
+canvas@1.6.2:
+  version "1.6.2"
+  resolved "http://registry.npm.taobao.org/canvas/download/canvas-1.6.2.tgz#12b56e3f00e7880aa45e3aae59fe75237720aaa4"
+  dependencies:
+    nan "^2.4.0"
+
+"canvasfilters@git://github.com/kig/canvasfilters.git":
+  version "0.0.1"
+  resolved "git://github.com/kig/canvasfilters.git#590154b8da04b6c85e07c03a8566d63a26449830"
+
 caseless@~0.12.0:
   version "0.12.0"
   resolved "http://registry.npm.taobao.org/caseless/download/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -2096,7 +2106,7 @@ ms@0.7.2:
   version "0.7.2"
   resolved "http://registry.npm.taobao.org/ms/download/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
-nan@^2.3.0:
+nan@^2.3.0, nan@^2.4.0:
   version "2.6.1"
   resolved "http://registry.npm.taobao.org/nan/download/nan-2.6.1.tgz#8c84f7b14c96b89f57fbc838012180ec8ca39a01"
 
