@@ -1,7 +1,8 @@
 // owner: chengxuan
 
 // const inputURL = 'http://www.jameslovesrose.com/'
-const inputURL = 'http://libo.sxl.cn/'
+// const inputURL = 'http://libo.sxl.cn/'
+const inputURL = 'http://roselike.win'
 const request = require('request')
 const cheerio = require('cheerio')
 const calculator = require('./score-calculation.js')
@@ -33,7 +34,10 @@ function caclculate(url) {
       const shareIcon = $('link[rel="apple-touch-icon"][sizes="76x76"]').attr('href')
 
       const baiduVerification = html.indexOf("<meta name=\"baidu-site-verification") > -1
-      const googleVerfication = html.indexOf("analytics_tracker") > -1
+      const googleVerfication = html.indexOf("<meta name=\"google-site-verification\" content=") > -1
+
+      console.log('baidu', baiduVerification)
+      console.log('google', googleVerfication)
 
       let imgList = []
       $('img').each(function(){
