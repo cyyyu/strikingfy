@@ -12,18 +12,14 @@ app.get('/dist/:file', function(req, res) {
 
 app.get('/score', function(req, res) {
   let url = req.query.url
-  console.log('url', url)
-  calculate(url).then((score) => {
-    res.send({
-      status: 200,
-      totalScore: score,
-      aspect: [],
-    })
+  calculate(url).then((re) => {
+    res.send(Object.assign({
+      statue: 200
+    }, re))
   }, () => {
     // network error
     res.send({
       status: 404,
-      score: score
     })
   })
 })
