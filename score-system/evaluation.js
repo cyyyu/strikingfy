@@ -10,13 +10,8 @@ module.exports = function caclculate(url) {
   return new Promise((resolve, reject) => {
     request(inputURL, function(error, response, body) {
       try {
-        let total = parseHTML(body)
-        resolve({
-          totalScore: total,
-          tips: [
-
-          ]
-        })
+        let results = parseHTML(body)
+        resolve(results)
       } catch (err) {
         reject(err)
       }

@@ -14,7 +14,7 @@ app.get('/score/:url', function(req, res) {
   let url = req.params.url
   calculate(url).then((re) => {
     res.send(Object.assign({
-      statue: 200
+      status: 200
     }, re))
   }, () => {
     // network error
