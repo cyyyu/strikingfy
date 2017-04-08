@@ -17,6 +17,28 @@ class Evaluation {
     return !!url.match(regex)
   }
 
+  progressLoading(url) {
+    let loadBar = $('.progress-radial').last()
+
+    let timer = setInterval(() => {
+      let currentClass = loadBar.attr('class').split(' ')[1]
+      let currentPercentage = currentClass.substring(9,12)
+      let newPercentage = Math.min((parseInt(currentPercentage) + 1), 100)
+      let newClass = 'progress-' + newPercentage
+      loadBar.removeClass(currentClass).addClass(newClass)
+      if (newPercentage > 100) {
+        clearInterval(timer)
+        this.redirectToResult(url)
+      }
+    }, 100)
+  }
+
+  redirectToResult(url) {
+    $.get(`/score/${url}`, (json) => {
+      
+    })
+  }
+
   showEvaluationResult(url) {
     if(!this.urlValidator(url)) {
       $('.email-fail').toggle()
@@ -25,6 +47,8 @@ class Evaluation {
 
     $('.container-index').toggle()
     $('.progress-section').toggle()
+
+    this.progressLoading(url)
   }
 
   submitHandler() {
