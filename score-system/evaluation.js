@@ -1,6 +1,7 @@
 // owner: chengxuan
 
-const inputURL = 'http://www.jameslovesrose.com/'
+// const inputURL = 'http://www.jameslovesrose.com/'
+const inputURL = 'http://libo.sxl.cn/'
 const request = require('request')
 const cheerio = require('cheerio')
 const calculator = require('./score-calculation.js')
@@ -23,6 +24,7 @@ function parseHTML(html) {
   const baiduVerification = html.indexOf("<meta name=\"baidu-site-verification") > -1 
   const googleVerfication = html.indexOf("analytics_tracker") > -1 
 
+  console.log(baiduVerification)
   console.log(googleVerfication)
 
   let score1 = calculator.checkTitle(title)
