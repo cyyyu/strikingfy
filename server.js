@@ -6,6 +6,10 @@ app.get('/', function(req, res) {
   res.sendFile(path.resolve(__dirname, './index.html'))
 })
 
+app.get('/dist/:file', function(req, res) {
+  res.sendFile(path.resolve(__dirname, `./dist/${req.params.file}`))
+})
+
 app.get('/score/:url', function(req, res) {
   let url = req.params.url
   calculate(url).then((score) => {
