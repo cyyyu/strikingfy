@@ -11,7 +11,12 @@ module.exports = function caclculate(url) {
     request(inputURL, function(error, response, body) {
       try {
         let total = parseHTML(body)
-        resolve(total)
+        resolve({
+          totalScore: total,
+          tips: [
+
+          ]
+        })
       } catch (err) {
         reject(err)
       }
@@ -31,13 +36,9 @@ module.exports = function caclculate(url) {
       const baiduVerification = html.indexOf("<meta name=\"baidu-site-verification") > -1
       const googleVerfication = html.indexOf("analytics_tracker") > -1
 
-      let score1 = calculator.checkTitle(title)
-      let score2 = calculator.checkKeywords(keywords)
-      let score3 = calculator.checkDescription(description)
-      let score4 = calculator.checkFavicon(favicon)
+      let result = calculator(title, keywords, description, favicon, shareIcon, baiduVerification, googleVerfication)
 
-      let total = 100 - (score1 + score1 + score3 + score4)
-      return total
+      return result
     }
   })
 }
