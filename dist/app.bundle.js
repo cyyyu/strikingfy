@@ -41930,15 +41930,24 @@ var Evaluation = function () {
       var greenIcon = '<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>';
       var redIcon = '<i class="fa fa-times" aria-hidden="true" style="color:red;"></i>';
 
-      json.aspects.map(function (item) {
-        listDom.append((0, _jquery2.default)('\n        <tr colspan="2" class="row">\n          <td class="detail-item-name col-md-3">\n            ' + item.name + '\n            ' + (item.pass === 200 ? greenIcon : redIcon) + '\n          </td>\n          <td class="detail-item-detail col-md-8">\n            <div class="detail-item-score">Score: -' + item.score + '</div>\n            <div class="detail-item-tips">Tips: ' + item.tip + '</div>\n          </td>\n        </tr>'));
+      json.result.aspects.map(function (item) {
+        listDom.append((0, _jquery2.default)('\n        <tr colspan="2" class="row">\n          <td class="detail-item-name col-md-3">\n            ' + item.name + '\n            ' + (item.pass === 200 ? greenIcon : redIcon) + '\n          </td>\n          <td class="detail-item-detail col-md-8">\n            <div class="detail-item-score">Score: ' + item.score + '</div>\n          </td>\n        </tr>'));
       });
 
-      this.renderImageDetail();
+      this.renderImageDetail(json.imageScores);
     }
   }, {
     key: 'renderImageDetail',
-    value: function renderImageDetail(imgArr) {}
+    value: function renderImageDetail(imgArr) {
+      var listDom = (0, _jquery2.default)('#tips');
+
+      var greenIcon = '<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>';
+      var redIcon = '<i class="fa fa-times" aria-hidden="true" style="color:red;"></i>';
+
+      imgArr.map(function (img) {
+        listDom.append((0, _jquery2.default)('\n        <tr colspan="2" class="row">\n          <td class="detail-item-name col-md-3">\n            <img src="' + img.url + '" style="height:50px;width:50px">\n            ' + (item.pass === 200 ? greenIcon : redIcon) + '\n          </td>\n          <td class="detail-item-detail col-md-8">\n            <div class="detail-item-score">Score: ' + item.score + '</div>\n          </td>\n        </tr>\n      '));
+      });
+    }
   }, {
     key: 'redirectToResult',
     value: function redirectToResult(url) {

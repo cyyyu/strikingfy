@@ -46,7 +46,7 @@ class Evaluation {
     const greenIcon = `<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>`
     const redIcon = `<i class="fa fa-times" aria-hidden="true" style="color:red;"></i>`
 
-    json.aspects.map(item => {
+    json.result.aspects.map(item => {
       listDom.append($(`
         <tr colspan="2" class="row">
           <td class="detail-item-name col-md-3">
@@ -54,18 +54,34 @@ class Evaluation {
             ${item.pass===200 ? greenIcon : redIcon}
           </td>
           <td class="detail-item-detail col-md-8">
-            <div class="detail-item-score">Score: -${item.score}</div>
-            <div class="detail-item-tips">Tips: ${item.tip}</div>
+            <div class="detail-item-score">Score: ${item.score}</div>
           </td>
         </tr>`))
     })
 
-    this.renderImageDetail()
+    this.renderImageDetail(json.imageScores)
   }
 
   renderImageDetail(imgArr) {
-    
-  }
+    let listDom = $('#tips')
+
+    const greenIcon = `<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>`
+    const redIcon = `<i class="fa fa-times" aria-hidden="true" style="color:red;"></i>`
+  
+    imgArr.map(img => {
+      listDom.append($(`
+        <tr colspan="2" class="row">
+          <td class="detail-item-name col-md-3">
+            <img src="${img.url}" style="height:50px;width:50px">
+            ${item.pass===200 ? greenIcon : redIcon}
+          </td>
+          <td class="detail-item-detail col-md-8">
+            <div class="detail-item-score">Score: ${item.score}</div>
+          </td>
+        </tr>
+      `))
+    })
+}
 
   redirectToResult(url) {
     $.get(`/score?url=${url}`, (json) => {
